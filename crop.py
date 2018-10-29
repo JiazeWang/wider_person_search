@@ -3,8 +3,8 @@ import os
 import os.path as osp
 import cv2
 
-trainval_root = '/data2/xieqk/wider/person_search_trainval'
-test_root = '/data2/xieqk/wider/person_search_test'
+trainval_root = '/mnt/SSD/wider/images'
+test_root = '/mnt/SSD/wider/images'
 
 def load_json(name):
     with open(name) as f:
@@ -17,8 +17,8 @@ def check_path(path):
         print('path not exist, mkdir:', path)
 
 if __name__ == '__main__':
-    val = load_json(osp.join(trainval_root, 'val.json'))
-    test = load_json(osp.join(test_root, 'test.json'))
+    val = load_json(osp.join(trainval_root,'..','label','val.json'))
+    test = load_json(osp.join(test_root, '..','label','test.json'))
 
     val_num, test_num = len(val.keys()), len(test.keys())
     val_cnt, test_cnt = 0, 0
@@ -46,9 +46,9 @@ if __name__ == '__main__':
             crop = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
             crop = cv2.resize(crop, (128, 256))
             if chk_val == False:
-                check_path(osp.join('./', 'data', 'wider_exfeat', 'val'))
+                check_path(osp.join('~', 'data', 'wider_exfeat', 'val'))
                 chk_val = True
-            cv2.imwrite(osp.join('./data/wider_exfeat/val', save_name), crop)
+            cv2.imwrite(osp.join('~/data/wider_exfeat/val', save_name), crop)
     for movie, info in test.items():
         test_cnt += 1
         candidates = info['candidates']
@@ -72,6 +72,6 @@ if __name__ == '__main__':
             crop = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
             crop = cv2.resize(crop, (128, 256))
             if chk_test == False:
-                check_path(osp.join('./', 'data', 'wider_exfeat', 'test'))
+                check_path(osp.join('~', 'data', 'wider_exfeat', 'test'))
                 chk_test = True
-            cv2.imwrite(osp.join('./data/wider_exfeat/test', save_name), crop)
+            cv2.imwrite(osp.join('~/data/wider_exfeat/test', save_name), crop)
