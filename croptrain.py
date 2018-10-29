@@ -3,8 +3,8 @@ import os
 import os.path as osp
 import cv2
 
-traintrain_root = '/mnt/SSD/wider/images'
-test_root = '/mnt/SSD/wider/images'
+traintrain_root = '/mnt/SSD/jzwang/wider/images'
+test_root = '/mnt/SSD/jzwang/wider/images'
 
 def load_json(name):
     with open(name) as f:
