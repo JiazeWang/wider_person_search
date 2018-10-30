@@ -3,8 +3,9 @@ import os
 import os.path as osp
 import cv2
 
-trainval_root = '/mnt/SSD/wider/images'
-test_root = '/mnt/SSD/wider/images'
+trainval_root = '/mnt/SSD/jzwang/wider/images'
+test_root = '/mnt/SSD/jzwang/wider/images'
+save_root = '/mnt/SSD/jzwang'
 
 def load_json(name):
     with open(name) as f:
@@ -30,7 +31,8 @@ if __name__ == '__main__':
         for i, candidate in enumerate(candidates):
             print('val: %d/%d, test: %d/%d ... %s %d/%d'%(val_cnt, val_num, test_cnt, test_num, candidate['img'], i+1, candi_len))
             pid = candidate['id']
-            save_name = '%s.jpg'%pid
+            c_label = candidate['label']
+            save_name = '%s_%s.jpg'%(c_label, pid)
             img_path = osp.join(trainval_root, 'val', candidate['img'])
             img = cv2.imread(img_path)
             h, w, _ = img.shape
@@ -46,9 +48,10 @@ if __name__ == '__main__':
             crop = img[bbox[1]:bbox[1]+bbox[3], bbox[0]:bbox[0]+bbox[2]]
             crop = cv2.resize(crop, (128, 256))
             if chk_val == False:
-                check_path(osp.join('~', 'data', 'wider_exfeat', 'val'))
+                check_path(osp.join(save_root, 'wider_exfeat_new', 'val'))
                 chk_val = True
-            cv2.imwrite(osp.join('~/data/wider_exfeat/val', save_name), crop)
+            cv2.imwrite(osp.join(save_root, 'wider_exfeat_new/val', save_name), crop)
+    """
     for movie, info in test.items():
         test_cnt += 1
         candidates = info['candidates']
@@ -75,3 +78,4 @@ if __name__ == '__main__':
                 check_path(osp.join('~', 'data', 'wider_exfeat', 'test'))
                 chk_test = True
             cv2.imwrite(osp.join('~/data/wider_exfeat/test', save_name), crop)
+        """
