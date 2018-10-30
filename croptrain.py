@@ -51,4 +51,4 @@ if __name__ == '__main__':
             if chk_train == False:
                 check_path(osp.join(save_root, 'wider_exfeat_new', 'train'))
                 chk_train = True
-            cv2.imwrite(osp.join(save_root, '/wider_exfeat_new/train', save_name), crop)
+            cv2.imwrite(osp.join(save_root, 'wider_exfeat_new/train', save_name), crop)
