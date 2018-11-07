@@ -30,7 +30,7 @@ def load_face(val_data, face_data):
     face_dict = {}
     movie_list = []
     for mid, value in val_data.items():
-        movie_list.append(movie)
+        movie_list.append(mid)
         casts = info['cast']
         candidates = info['candidates']
         cast_ids, cast_ffeats = [], []
