@@ -12,6 +12,11 @@ def load_json(name):
         data = json.load(f)
         return data
 
+def read_info(info_file):
+    with open(info_file) as f:
+        info_dict = json.load(f)
+    return info_dict
+
 def read_feat(feat_file):
     with open(feat_file) as f:
         feat_list = json.load(f)
@@ -20,9 +25,27 @@ def read_feat(feat_file):
         feat_dict[x['id']] = x
     return feat_dict
 
-def load_face(face_data):
+
+def load_face(val_data, face_data):
     face_dict = {}
     movie_list = []
+    for mid, value in val_data.items():
+        movie_list.append(movie)
+        casts = info['cast']
+        candidates = info['candidates']
+        cast_ids, cast_ffeats = [], []
+        cast_ids = [x['id'] for x in casts]
+        for key in cast_ids:
+            cast_ffeats.append(feat_dict[key]['feat'])
+        cast_ffeats = np.array(cast_ffeats)
+
+        candi_f_ids, candi_f_ffeats = [], []
+        candi_f_ids = [x['id'] for x in candidates]
+        for key in candi_f_ids:
+            if candidate['fbbox'] is not "null":
+            candi_f_ffeats.append(feat_dict[key]['feat'])
+        candi_f_ffeats = np.array(candi_f_ffeats)
+"""
     for movie, info in face_data.items():
         movie_list.append(movie)
         casts = info['cast']
@@ -40,7 +63,7 @@ def load_face(face_data):
                 candi_f_ids.append(candidate['id'])
                 candi_f_ffeats.append(candidate['feat'])
         candi_f_ffeats = np.array(candi_f_ffeats)
-
+"""
         face_dict.update(
             {
                 movie:{
@@ -222,8 +245,11 @@ def main(args):
     print('Load features from pkl ...')
     #face_pkl = my_unpickle(osp.join('./features', face_feat_name))
     #face_dict, movie_list = load_face(face_pkl)
-    face_information = read_feat(face_feat_name)
-    face_dict, movie_list = load_face(face_information)
+    info_file = '/mnt/SSD/jzwang/wider/label/val.json'
+    info_dict = read_info(info_file)
+    feat_file = './FaceTool/face_val.json'
+    feat_dict = read_feat(feat_file)
+    face_dict, movie_list = load_face(info_dict, feat_dict)
     if args.arch is None:
         reid_pkl_resnet101 = my_unpickle(osp.join('./features', reid_feat_name_resnet101))
         reid_pkl_densenet121 = my_unpickle(osp.join('./features', reid_feat_name_densenet121))
