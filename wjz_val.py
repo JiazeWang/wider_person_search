@@ -45,7 +45,7 @@ def load_face(val_data, face_data):
             if candidate['fbbox'] is not "null":
                 candi_f_ffeats.append(feat_dict[key]['feat'])
         candi_f_ffeats = np.array(candi_f_ffeats)
-        
+
         face_dict.update(
             {
                 movie:{
@@ -249,7 +249,7 @@ def main(args):
     #face_dict, movie_list = load_face(face_pkl)
     info_file = '/mnt/SSD/jzwang/wider/label/val.json'
     info_dict = read_info(info_file)
-    feat_file = './FaceTool/face_val.json'
+    feat_file = '/home/jzwang/new/baseline/FaceTool/face_val.json'
     feat_dict = read_feat(feat_file)
     face_dict, movie_list = load_face(info_dict, feat_dict)
     if args.arch is None:
