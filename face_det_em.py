@@ -10,8 +10,8 @@ from utils.pkl import my_pickle
 from mtcnn.mtcnn_detector import MtcnnDetector
 from arcface.face_em import FaceModel
 
-trainval_root = '/data2/xieqk/wider/person_search_trainval'
-test_root = '/data2/xieqk/wider/person_search_test'
+trainval_root = '/mnt/SSD/jzwang/wider/images'
+test_root = '/mnt/SSD/jzwang/wider/images'
 
 def load_json(name):
     with open(name) as f:
@@ -79,17 +79,17 @@ def face_exfeat(img, fbbox, landmark, face_model):
 def main(args):
     is_test = True if args.is_test == '1' else False
     _t = Timer()
-    detector_cast = MtcnnDetector(model_folder='./mtcnn/model', 
+    detector_cast = MtcnnDetector(model_folder='./mtcnn/model',
                             minsize = 20,
                             threshold = [0.1, 0.5, 0.9],
                             factor = 0.709,
-                            ctx=mx.gpu(args.gpu), num_worker = 4 , 
+                            ctx=mx.gpu(args.gpu), num_worker = 4 ,
                             accurate_landmark = False)
-    detector_candi = MtcnnDetector(model_folder='./mtcnn/model', 
+    detector_candi = MtcnnDetector(model_folder='./mtcnn/model',
                             minsize = 20,
                             threshold = [0.5, 0.5, 0.9],
                             factor = 0.709,
-                            ctx=mx.gpu(args.gpu), num_worker = 4 , 
+                            ctx=mx.gpu(args.gpu), num_worker = 4 ,
                             accurate_landmark = False)
     embedding = FaceModel(model='./arcface/model/model-r50-am-lfw',
                           ctx=mx.gpu(args.gpu))
@@ -116,7 +116,7 @@ def main(args):
             assert fbbox is not None, 'Cast: No face detected !'
             ffeat = face_exfeat(img, fbbox, landmark, embedding)
             _t.toc()
-            print('%s %d/%d ... %s %d/%d ... time: %.3f s average: %.3f s'%(movie, movie_cnt, movie_num, 
+            print('%s %d/%d ... %s %d/%d ... time: %.3f s average: %.3f s'%(movie, movie_cnt, movie_num,
                                                 cast_id, i+1, casts_num, _t.diff, _t.average_time))
             face_dict[movie]['cast'].append({
                 'id': cast_id,
@@ -132,7 +132,7 @@ def main(args):
             crop, fbbox, landmark = face_det_candi(img, rect, detector_candi)
             if fbbox is None:
                 _t.toc()
-                print('%s %d/%d ... %s %d/%d ... time: %.3f s average: %.3f s'%(movie, movie_cnt, movie_num, 
+                print('%s %d/%d ... %s %d/%d ... time: %.3f s average: %.3f s'%(movie, movie_cnt, movie_num,
                                                     candidate_id, i+1, candidates_num, _t.diff, _t.average_time))
                 face_dict[movie]['candidates'].append({
                     'id': candidate_id,
@@ -142,7 +142,7 @@ def main(args):
                 continue
             ffeat = face_exfeat(crop, fbbox, landmark, embedding)
             _t.toc()
-            print('%s %d/%d ... %s %d/%d ... time: %.3f s average: %.3f s'%(movie, movie_cnt, movie_num, 
+            print('%s %d/%d ... %s %d/%d ... time: %.3f s average: %.3f s'%(movie, movie_cnt, movie_num,
                                                 candidate_id, i+1, candidates_num, _t.diff, _t.average_time))
             face_dict[movie]['candidates'].append({
                 'id': candidate_id,
