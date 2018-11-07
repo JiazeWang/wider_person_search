@@ -45,6 +45,19 @@ def load_face(val_data, face_data):
             if candidate['fbbox'] is not "null":
                 candi_f_ffeats.append(feat_dict[key]['feat'])
         candi_f_ffeats = np.array(candi_f_ffeats)
+        
+        face_dict.update(
+            {
+                movie:{
+                    'cast_ids':cast_ids,
+                    'cast_ffeats':cast_ffeats,
+                    'candi_f_ids': candi_f_ids,
+                    'candi_f_ffeats':candi_f_ffeats,
+                }
+            }
+        )
+    return face_dict, movie_list
+
 """
     for movie, info in face_data.items():
         movie_list.append(movie)
@@ -64,17 +77,6 @@ def load_face(val_data, face_data):
                 candi_f_ffeats.append(candidate['feat'])
         candi_f_ffeats = np.array(candi_f_ffeats)
 """
-        face_dict.update(
-            {
-                movie:{
-                    'cast_ids':cast_ids,
-                    'cast_ffeats':cast_ffeats,
-                    'candi_f_ids': candi_f_ids,
-                    'candi_f_ffeats':candi_f_ffeats,
-                }
-            }
-        )
-    return face_dict, movie_list
 
 def load_reid(reid_data):
     reid_dict_tmp = {}
