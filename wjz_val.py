@@ -29,8 +29,8 @@ def read_feat(feat_file):
 def load_face(val_data, face_data):
     face_dict = {}
     movie_list = []
-    for mid, value in val_data.items():
-        movie_list.append(mid)
+    for movie, info in val_data.items():
+        movie_list.append(movie)
         casts = info['cast']
         candidates = info['candidates']
         cast_ids, cast_ffeats = [], []
