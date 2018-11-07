@@ -36,19 +36,23 @@ def load_face(val_data, face_data):
         cast_ids, cast_ffeats = [], []
         cast_ids = [x['id'] for x in casts]
         for key in cast_ids:
+            #cast_ids.append(key['id'])
             cast_ffeats.append(face_data[key]['feat'])
         cast_ffeats = np.array(cast_ffeats)
         #print('cast_ffeats.shape:',cast_ffeats.shape)
         candi_f_ids, candi_f_ffeats = [], []
-        candi_f_ids = [x['id'] for x in candidates]
-        for key in candi_f_ids:
+        candi_f_ids_old = [x['id'] for x in candidates]
+        for key in candi_f_ids_old:
        	    tmp = face_data[key]['feat']
             if tmp is not None:
                 feat = np.array(tmp) 
                 candi_f_ffeats.append(feat)
+                candi_f_ids.append(face_data[key]['id'])
+            #else:
+            #    candi_f_ids.remove(key)
         candi_f_ffeats = np.array(candi_f_ffeats)
         #print(candi_f_ffeats)
-        print("candi_f_ffeats.shape:",candi_f_ffeats.shape)
+        #print("candi_f_ffeats.shape:",candi_f_ffeats.shape)
         face_dict.update(
             {
                 movie:{
@@ -197,6 +201,7 @@ def rank(movie_face, movie_reid):
     # print(candi_feats.shape)
     candi_candi_dist = pdist(candi_feats, 'euclidean')
     candi_candi_dist = squareform(candi_candi_dist)
+    #print("cast_candi_fsim.shape[0],len(cast_ids),cast_candi_fsim.shape[1],len(candi_f_ids):",cast_candi_fsim.shape[0],len(cast_ids),cast_candi_fsim.shape[1],len(candi_f_ids))
     assert cast_candi_fsim.shape[0] == len(cast_ids) and cast_candi_fsim.shape[1] == len(candi_f_ids)
 
     # get cast_candi_flag
