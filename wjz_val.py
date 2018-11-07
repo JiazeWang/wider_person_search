@@ -36,14 +36,14 @@ def load_face(val_data, face_data):
         cast_ids, cast_ffeats = [], []
         cast_ids = [x['id'] for x in casts]
         for key in cast_ids:
-            cast_ffeats.append(feat_dict[key]['feat'])
+            cast_ffeats.append(face_data[key]['feat'])
         cast_ffeats = np.array(cast_ffeats)
 
         candi_f_ids, candi_f_ffeats = [], []
         candi_f_ids = [x['id'] for x in candidates]
         for key in candi_f_ids:
             if candidate['fbbox'] is not "null":
-                candi_f_ffeats.append(feat_dict[key]['feat'])
+                candi_f_ffeats.append(face_data[key]['feat'])
         candi_f_ffeats = np.array(candi_f_ffeats)
 
         face_dict.update(
