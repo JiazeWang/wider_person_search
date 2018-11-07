@@ -39,6 +39,7 @@ def face_det_cast(img, detector):
     w, h = int(width/ratio), 200
     resize_img = cv2.resize(img, (w,h))
     # det
+    #print("resize_img.shape:",resize_img.shape)
     results = detector.detect_face(resize_img)
     # selection
     if results is None:
@@ -57,8 +58,20 @@ def face_det_cast(img, detector):
 
 def face_det_candi(img, rect, detector):
     crop = img[rect[1]:rect[1]+rect[3], rect[0]:rect[0]+rect[2]].copy()
-    # det
-    results = detector.detect_face(crop)
+    # det 
+    height, width, _ = crop.shape
+    if height == 0 or width == 0:
+        return crop, None, None
+    ratio = height/ 200.0
+    w, h = int(width/ratio), 200
+    resize_crop = cv2.resize(crop, (w,h))
+    #print("###111")
+    #print("resize_crop.shape:",resize_crop.shape)
+    w_new, h_new, _= resize_crop.shape
+    if w_new == 0 or h_new ==0:
+        return crop, None, None
+    results = detector.detect_face(resize_crop)
+    #print("###222")
     if results is None:
         return crop, None, None
     bboxes, landmarks = results
