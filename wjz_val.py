@@ -38,14 +38,17 @@ def load_face(val_data, face_data):
         for key in cast_ids:
             cast_ffeats.append(face_data[key]['feat'])
         cast_ffeats = np.array(cast_ffeats)
-
+        #print('cast_ffeats.shape:',cast_ffeats.shape)
         candi_f_ids, candi_f_ffeats = [], []
         candi_f_ids = [x['id'] for x in candidates]
         for key in candi_f_ids:
-            if face_data[key]['bbox'] is not "null":
-                candi_f_ffeats.append(face_data[key]['feat'])
+       	    tmp = face_data[key]['feat']
+            if tmp is not None:
+                feat = np.array(tmp) 
+                candi_f_ffeats.append(feat)
         candi_f_ffeats = np.array(candi_f_ffeats)
-
+        #print(candi_f_ffeats)
+        print("candi_f_ffeats.shape:",candi_f_ffeats.shape)
         face_dict.update(
             {
                 movie:{
