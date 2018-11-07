@@ -43,7 +43,7 @@ def load_face(val_data, face_data):
         candi_f_ids = [x['id'] for x in candidates]
         for key in candi_f_ids:
             if candidate['fbbox'] is not "null":
-            candi_f_ffeats.append(feat_dict[key]['feat'])
+                candi_f_ffeats.append(feat_dict[key]['feat'])
         candi_f_ffeats = np.array(candi_f_ffeats)
 """
     for movie, info in face_data.items():
