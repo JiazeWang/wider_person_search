@@ -12,6 +12,14 @@ def load_json(name):
         data = json.load(f)
         return data
 
+def read_feat(feat_file):
+    with open(feat_file) as f:
+        feat_list = json.load(f)
+    feat_dict = {}
+    for x in feat_list:
+        feat_dict[x['id']] = x
+    return feat_dict
+
 def load_face(face_data):
     face_dict = {}
     movie_list = []
@@ -212,8 +220,10 @@ def main(args):
         reid_feat_name_seresnext101 = 'reid_em_test_seresnext101.pkl'
 
     print('Load features from pkl ...')
-    face_pkl = my_unpickle(osp.join('./features', face_feat_name))
-    face_dict, movie_list = load_face(face_pkl)
+    #face_pkl = my_unpickle(osp.join('./features', face_feat_name))
+    #face_dict, movie_list = load_face(face_pkl)
+    face_information = read_feat(face_feat_name)
+    face_dict, movie_list = load_face(face_information)
     if args.arch is None:
         reid_pkl_resnet101 = my_unpickle(osp.join('./features', reid_feat_name_resnet101))
         reid_pkl_densenet121 = my_unpickle(osp.join('./features', reid_feat_name_densenet121))
