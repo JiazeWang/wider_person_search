@@ -196,6 +196,7 @@ def main(args):
         reid_feat_name_seresnet101 = 'reid_em_val_seresnet101.pkl'
         reid_feat_name_seresnext101 = 'reid_em_val_seresnext101.pkl'
         reid_feat_name_hacnn = 'reid_em_val_hacnn.pkl'
+        reid_feat_name_resnet50 = 'reid_em_val_resnet50.pkl'
     else:
         face_feat_name = 'face_em_test.pkl'
         reid_feat_name_resnet101 = 'reid_em_test_resnet101.pkl'
@@ -230,6 +231,9 @@ def main(args):
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_seresnext101))
         reid_dict = load_reid(reid_pkl)
     elif args.arch == 'hacnn':
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_dict = load_reid(reid_pkl)
+    elif args.arch == 'resnet50':
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
         reid_dict = load_reid(reid_pkl)
     print('Done !')
