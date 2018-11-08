@@ -12,6 +12,7 @@ __factory = {
     'seresnext50': SEResNeXt50,
     'seresnext101': SEResNeXt101,
     'densenet121': DenseNet121,
+    'hacnn':hacnn
 }
 
 def get_names():
