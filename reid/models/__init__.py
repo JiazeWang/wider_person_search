@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from .ResNet import *
 from .SEResNet import *
 from .DenseNet import *
-
+from .hacnn import *
 __factory = {
     'resnet50': ResNet50,
     'resnet101': ResNet101,
@@ -12,7 +12,7 @@ __factory = {
     'seresnext50': SEResNeXt50,
     'seresnext101': SEResNeXt101,
     'densenet121': DenseNet121,
-    'hacnn':hacnn
+    'hacnn':HACNN
 }
 
 def get_names():
