@@ -37,7 +37,10 @@ def load_face(val_data, face_data):
         cast_ids = [x['id'] for x in casts]
         for key in cast_ids:
             #cast_ids.append(key['id'])
-            cast_ffeats.append(face_data[key]['feat'])
+            tmp = face_data[key]['feat']
+            feat = tem / np.linalg.norm(tem)
+            cast_ffeats.append(feat)
+
         cast_ffeats = np.array(cast_ffeats)
         #print('cast_ffeats.shape:',cast_ffeats.shape)
         candi_f_ids, candi_f_ffeats = [], []
@@ -45,7 +48,8 @@ def load_face(val_data, face_data):
         for key in candi_f_ids_old:
        	    tmp = face_data[key]['feat']
             if tmp is not None:
-                feat = np.array(tmp) 
+                feat = np.array(tmp)
+                feat = feat / np.linalg.norm(feat)
                 candi_f_ffeats.append(feat)
                 candi_f_ids.append(face_data[key]['id'])
             #else:
@@ -65,26 +69,6 @@ def load_face(val_data, face_data):
         )
     return face_dict, movie_list
 
-"""
-    for movie, info in face_data.items():
-        movie_list.append(movie)
-        casts = info['cast']
-        candidates = info['candidates']
-
-        cast_ids, cast_ffeats = [], []
-        for cast in casts:
-            cast_ffeats.append(cast['feat'])
-            cast_ids.append(cast['id'])
-        cast_ffeats = np.array(cast_ffeats)
-
-        candi_f_ids, candi_f_ffeats = [], []
-        for candidate in candidates:
-            if candidate['fbbox'] is not None:
-                candi_f_ids.append(candidate['id'])
-                candi_f_ffeats.append(candidate['feat'])
-        candi_f_ffeats = np.array(candi_f_ffeats)
-"""
-
 def load_reid(reid_data):
     reid_dict_tmp = {}
     reid_dict = {}
@@ -93,40 +77,6 @@ def load_reid(reid_data):
         if movie not in reid_dict_tmp.keys():
             reid_dict_tmp.update({movie:{}})
         reid_dict_tmp[movie].update({key:value})
-    for movie, info in reid_dict_tmp.items():
-        candi_ids, candi_feats = [], []
-        for candi_id, candi_feat in info.items():
-            candi_ids.append(candi_id)
-            candi_feats.append(candi_feat)
-        candi_feats = np.array(candi_feats)
-
-        reid_dict.update(
-            {
-                movie:{
-                    'candi_ids':candi_ids,
-                    'candi_feats':candi_feats
-                }
-            }
-        )
-    return reid_dict
-
-def load_reid_4(reid_data1, reid_data2, reid_data3, reid_data4):
-    reid_dict_tmp = {}
-    reid_dict = {}
-    for key, value in reid_data1.items():
-        movie = key[:9]
-        if movie not in reid_dict_tmp.keys():
-            reid_dict_tmp.update({movie:{}})
-        feat1 = value
-        feat2 = reid_data2[key]
-        feat3 = reid_data3[key]
-        feat4 = reid_data4[key]
-        feat1 = np.array(feat1)
-        feat2 = np.array(feat2)
-        feat3 = np.array(feat3)
-        feat4 = np.array(feat4)
-        feat = np.hstack((feat1, feat2, feat3, feat4))
-        reid_dict_tmp[movie].update({key:feat})
     for movie, info in reid_dict_tmp.items():
         candi_ids, candi_feats = [], []
         for candi_id, candi_feat in info.items():
