@@ -257,6 +257,6 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--is-test', type=str, default='0', choices=['0', '1'])
-    parser.add_argument('-a', '--arch', type=str, default=None, choices=['resnet101', 'densenet121', 'seresnet101', 'seresnext101','hacnn'])
+    parser.add_argument('-a', '--arch', type=str, default=None, choices=['resnet101', 'densenet121', 'seresnet101', 'seresnext101','hacnn','resnet50'])
     args = parser.parse_args()
     main(args)
