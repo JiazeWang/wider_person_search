@@ -37,8 +37,8 @@ def load_face(val_data, face_data):
         cast_ids = [x['id'] for x in casts]
         for key in cast_ids:
             #cast_ids.append(key['id'])
-            tmp = face_data[key]['feat']
-            feat = tem / np.linalg.norm(tem)
+            feat = face_data[key]['feat']
+            feat = e / np.linalg.norm(tmp)
             cast_ffeats.append(feat)
 
         cast_ffeats = np.array(cast_ffeats)
