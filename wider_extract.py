@@ -96,6 +96,7 @@ def main(args):
             val_feat_dict.update({pid:val_feats[i].tolist()})
         my_pickle(val_feat_dict, osp.join('features', 'reid_em_val_%s.pkl'%args.arch))
         # test set
+        """
         test_feats, test_pids = [], []
         for (imgs, pid, _) in testloader:
             imgs = imgs.cuda()
@@ -115,7 +116,7 @@ def main(args):
         for i, pid in enumerate(test_pids):
             test_feat_dict.update({pid:test_feats[i].tolist()})
         my_pickle(test_feat_dict, osp.join('features', 'reid_em_test_%s.pkl'%args.arch))
-
+        """
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
