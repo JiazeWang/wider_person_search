@@ -133,6 +133,6 @@ if __name__ == '__main__':
     parser.add_argument('--test-batch', default=32, type=int, help="test batch size")
     parser.add_argument('-a', '--arch', type=str, default='densenet121', choices=models.get_names())
     parser.add_argument('--seed', type=int, default=1, help="manual seed")
-    parser.add_argument('--gpu', default='0,1,2,3', type=str, help='gpu device ids for CUDA_VISIBLE_DEVICES')
+    parser.add_argument('--gpu', default='0', type=str, help='gpu device ids for CUDA_VISIBLE_DEVICES')
     args = parser.parse_args()
     main(args)
