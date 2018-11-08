@@ -195,6 +195,7 @@ def main(args):
         reid_feat_name_densenet121 = 'reid_em_val_densenet121.pkl'
         reid_feat_name_seresnet101 = 'reid_em_val_seresnet101.pkl'
         reid_feat_name_seresnext101 = 'reid_em_val_seresnext101.pkl'
+        reid_feat_name_hacnn = 'reid_em_val_hacnn.pkl'
     else:
         face_feat_name = 'face_em_test.pkl'
         reid_feat_name_resnet101 = 'reid_em_test_resnet101.pkl'
@@ -228,6 +229,9 @@ def main(args):
     elif args.arch == 'seresnext101':
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_seresnext101))
         reid_dict = load_reid(reid_pkl)
+    elif args.arch == 'hacnn':
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_dict = load_reid(reid_pkl)
     print('Done !')
 
     rank_list = {}
@@ -249,6 +253,6 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--is-test', type=str, default='0', choices=['0', '1'])
-    parser.add_argument('-a', '--arch', type=str, default=None, choices=['resnet101', 'densenet121', 'seresnet101', 'seresnext101'])
+    parser.add_argument('-a', '--arch', type=str, default=None, choices=['resnet101', 'densenet121', 'seresnet101', 'seresnext101','hacnn'])
     args = parser.parse_args()
     main(args)
