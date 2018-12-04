@@ -136,7 +136,7 @@ def multi_search(cast_candi_filter, candi_f_ids, candi_ids, candi_candi_dist):
                 dists.append(candi_candi_dist[idx, j])
             dists = np.array(dists)
             #min_dist = dists.min()
-            min_dist = dists.average()
+            min_dist = dists.mean()
             #min_dist = -dists.max()
             result[i,j] = min_dist
 
