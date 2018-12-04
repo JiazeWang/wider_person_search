@@ -138,7 +138,8 @@ def multi_search(cast_candi_filter, candi_f_ids, candi_ids, candi_candi_dist):
             #min_dist = dists.min()
 
             #min_dist = dists.mean()
-            min_dist = -dists.max()
+            #min_dist = -dists.max()
+            min_dist = dists.min()-dists.max()+dists.mean()
             result[i,j] = min_dist
 
     return result
