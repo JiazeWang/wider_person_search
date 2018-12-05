@@ -244,6 +244,18 @@ def main(args):
     elif args.arch == 'resnet50':
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
         reid_dict = load_reid(reid_pkl)
+    elif args.arch == 'resnet50mid':
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_dict = load_reid(reid_pkl)
+    elif args.arch == 'mlfn':
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_dict = load_reid(reid_pkl)
+    elif args.arch == 'mudeep':
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_dict = load_reid(reid_pkl)
+    elif args.arch == 'pcb_p6':
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_dict = load_reid(reid_pkl)
     print('Done !')
 
     rank_list = {}
