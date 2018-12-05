@@ -8,6 +8,7 @@ from .mudeep import *
 from .hacnn import *
 from .pcb import *
 from .mlfn import *
+from .resnetmid import *
 
 __factory = {
     'resnet50': ResNet50,
