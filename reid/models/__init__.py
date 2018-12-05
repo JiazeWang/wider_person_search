@@ -4,6 +4,11 @@ from .ResNet import *
 from .SEResNet import *
 from .DenseNet import *
 from .hacnn import *
+from .mudeep import *
+from .hacnn import *
+from .pcb import *
+from .mlfn import *
+
 __factory = {
     'resnet50': ResNet50,
     'resnet101': ResNet101,
@@ -12,7 +17,13 @@ __factory = {
     'seresnext50': SEResNeXt50,
     'seresnext101': SEResNeXt101,
     'densenet121': DenseNet121,
-    'hacnn':HACNN
+    'hacnn':HACNN,
+    'mudeep': MuDeep,
+    'resnet50mid': resnet50mid,
+    'hacnn': HACNN,
+    'pcb_p6': pcb_p6,
+    'pcb_p4': pcb_p4,
+    'mlfn': mlfn,
 }
 
 def get_names():
