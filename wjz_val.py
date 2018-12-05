@@ -201,6 +201,10 @@ def main(args):
         reid_feat_name_seresnext101 = 'reid_em_val_seresnext101.pkl'
         reid_feat_name_hacnn = 'reid_em_val_hacnn.pkl'
         reid_feat_name_resnet50 = 'reid_em_val_resnet50.pkl'
+        reid_feat_name_resnet50mid = 'reid_em_val_resnet50mid.pkl'
+        reid_feat_name_pcb_p6 = 'reid_em_val_pcb_p6 .pkl'
+        reid_feat_name_mudeep = 'reid_em_val_mudeep.pkl'
+        reid_feat_name_mlfn = 'reid_em_val_mlfn.pkl'
     else:
         face_feat_name = 'face_em_test.pkl'
         reid_feat_name_resnet101 = 'reid_em_test_resnet101.pkl'
@@ -261,6 +265,6 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--is-test', type=str, default='0', choices=['0', '1'])
-    parser.add_argument('-a', '--arch', type=str, default=None, choices=['resnet101', 'densenet121', 'seresnet101', 'seresnext101','hacnn','resnet50'])
+    parser.add_argument('-a', '--arch', type=str, default=None, choices=['resnet101', 'densenet121', 'seresnet101', 'seresnext101','hacnn','resnet50','resnet50mid','pcb_p6','mudeep','mlfn'])
     args = parser.parse_args()
     main(args)
