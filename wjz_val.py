@@ -202,7 +202,7 @@ def main(args):
         reid_feat_name_hacnn = 'reid_em_val_hacnn.pkl'
         reid_feat_name_resnet50 = 'reid_em_val_resnet50.pkl'
         reid_feat_name_resnet50mid = 'reid_em_val_resnet50mid.pkl'
-        reid_feat_name_pcb_p6 = 'reid_em_val_pcb_p6 .pkl'
+        reid_feat_name_pcb_p6 = 'reid_em_val_pcb_p6.pkl'
         reid_feat_name_mudeep = 'reid_em_val_mudeep.pkl'
         reid_feat_name_mlfn = 'reid_em_val_mlfn.pkl'
     else:
