@@ -57,7 +57,8 @@ def main(args):
     )
 
     print("Initializing model: {}".format(args.arch))
-    model = models.init_model(name=args.arch, num_classes=998)
+    #model = models.init_model(name=args.arch, num_classes=998)
+    model = models.init_model(name=args.arch, num_classes=998, loss={'xent'})
     print("Model size: {:.5f}M".format(sum(p.numel() for p in model.parameters())/1000000.0))
 
     resume = './reid/models/trained_models/%s_best_model.pth.tar'%args.arch
