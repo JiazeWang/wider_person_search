@@ -242,19 +242,19 @@ def main(args):
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
         reid_dict = load_reid(reid_pkl)
     elif args.arch == 'resnet50':
-        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_resnet50))
         reid_dict = load_reid(reid_pkl)
     elif args.arch == 'resnet50mid':
-        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_resnet50mid))
         reid_dict = load_reid(reid_pkl)
     elif args.arch == 'mlfn':
-        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_mlfn))
         reid_dict = load_reid(reid_pkl)
     elif args.arch == 'mudeep':
-        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_mudeep))
         reid_dict = load_reid(reid_pkl)
     elif args.arch == 'pcb_p6':
-        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_hacnn))
+        reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_pcb_p6))
         reid_dict = load_reid(reid_pkl)
     print('Done !')
 
