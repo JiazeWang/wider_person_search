@@ -114,14 +114,9 @@ def multi_face_recall(cast_candi_filter, candi_f_ids, candi_candi_fsim):
     return result, recall_num
 
 def multi_search(cast_candi_filter, candi_f_ids, candi_ids, candi_candi_dist):
-    print("cast_candi_filter:", cast_candi_filter.shape)
-    print("candi_f_ids:", candi_f_ids.shape)
-    print("candi_ids:", candi_ids.shape)
-    print("candi_candi_dist:", candi_candi_dist.shape)
     rows, cols = cast_candi_filter.shape
     new_rows, new_cols = rows, len(candi_ids)
     assert cols <= new_cols
-
     pre_query_inds = []
     for i in range(rows):
         pre_query_inds.append([])
@@ -141,7 +136,8 @@ def multi_search(cast_candi_filter, candi_f_ids, candi_ids, candi_candi_dist):
             dists = np.array(dists)
             min_dist = dists.min()
             result[i,j] = min_dist
-
+    print("cast_candi_filter.shape:", cast_candi_filter.shape)
+    print("result.shape:", result.shape)
     return result
 
 def rank(movie_face, movie_reid):
