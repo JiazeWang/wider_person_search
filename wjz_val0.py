@@ -258,7 +258,9 @@ def main(args):
     movie_num = len(movie_list)
     for i, movie in enumerate(movie_list):
         movie_face = face_dict[movie]
+        print("movie_face.shape:",movie.shape)
         movie_reid = reid_dict[movie]
+        print("movie_reid.shape", movie_reid.shape)
         movie_rank, recall_num = rank(movie_face, movie_reid)
         print('movie: %s, %d/%d, recall num: %d'%(movie, i+1, movie_num, recall_num))
         rank_list.update(movie_rank)
