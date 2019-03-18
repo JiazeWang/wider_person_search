@@ -194,7 +194,7 @@ def rank_eval(res, label):
 
 def main(args):
     if args.is_test =='0':
-        face_feat_name = '/home/jzwang/new/baseline/FaceTool/face_val.json'
+        face_feat_name = 'features/face_val.json'
         reid_feat_name_resnet101 = 'reid_em_val_resnet101.pkl'
         reid_feat_name_densenet121 = 'reid_em_val_densenet121.pkl'
         reid_feat_name_seresnet101 = 'reid_em_val_seresnet101.pkl'
