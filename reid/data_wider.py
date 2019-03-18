@@ -66,7 +66,7 @@ class wider_train(object):
             camid = int(img_path.split('/')[-1][5])
             if relabel: pid = pid2label[pid]
             dataset.append((img_path, pid, camid))
-        
+
         num_pids = len(pid_container)
         num_imgs = len(dataset)
         return dataset, num_pids, num_imgs
@@ -78,13 +78,13 @@ class wider_exfeat(object):
     def __init__(self, root='data', **kwargs):
         self.dataset_dir = osp.join(root, self.dataset_dir)
         self.val_dir = osp.join(self.dataset_dir, 'val')
-        self.test_dir = osp.join(self.dataset_dir, 'test')
+        #self.test_dir = osp.join(self.dataset_dir, 'test')
 
         self._check_before_run()
 
         val, num_val_imgs = self._process_dir(self.val_dir, relabel=False)
-        test, num_test_imgs = self._process_dir(self.test_dir, relabel=False)
-        num_total_imgs = num_val_imgs + num_test_imgs
+        #test, num_test_imgs = self._process_dir(self.test_dir, relabel=False)
+        #num_total_imgs = num_val_imgs + num_test_imgs
 
         print("=> wider_exfeat loaded")
         print("Dataset statistics:")
@@ -92,16 +92,16 @@ class wider_exfeat(object):
         print("  subset     | # images")
         print("  ------------------------")
         print("  validation | {:8d}".format(num_val_imgs))
-        print("  test       | {:8d}".format(num_test_imgs))
+        #print("  test       | {:8d}".format(num_test_imgs))
         print("  ------------------------")
-        print("  total      | {:8d}".format(num_total_imgs))
+        #print("  total      | {:8d}".format(num_total_imgs))
         print("  ------------------------")
 
         self.val = val
-        self.test = test
+        #self.test = test
 
         self.num_val_imgs = num_val_imgs
-        self.num_test_imgs = num_test_imgs
+        #self.num_test_imgs = num_test_imgs
 
     def _check_before_run(self):
         """Check if all files are available before going deeper"""
@@ -109,9 +109,9 @@ class wider_exfeat(object):
             raise RuntimeError("'{}' is not available".format(self.dataset_dir))
         if not osp.exists(self.val_dir):
             raise RuntimeError("'{}' is not available".format(self.val_dir))
-        if not osp.exists(self.test_dir):
-            raise RuntimeError("'{}' is not available".format(self.test_dir))
-    
+        #if not osp.exists(self.test_dir):
+        #    raise RuntimeError("'{}' is not available".format(self.test_dir))
+
     def _process_dir(self, dir_path, relabel=False):
         img_paths = glob.glob(osp.join(dir_path, '*.jpg'))
 
@@ -119,7 +119,7 @@ class wider_exfeat(object):
         for img_path in img_paths:
             pid = img_path.split('/')[-1][:-4]
             dataset.append((img_path, pid, 0))
-        
+
         num_imgs = len(dataset)
         return dataset, num_imgs
 
