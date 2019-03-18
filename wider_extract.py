@@ -133,7 +133,7 @@ if __name__ == '__main__':
                         help="height of an image (default: 256)")
     parser.add_argument('--width', type=int, default=128,
                         help="width of an image (default: 128)")
-    parser.add_argument('--test-batch', default=32, type=int, help="test batch size")
+    parser.add_argument('--test-batch', default=4, type=int, help="test batch size")
     parser.add_argument('-a', '--arch', type=str, default='densenet121', choices=models.get_names())
     parser.add_argument('--seed', type=int, default=1, help="manual seed")
     parser.add_argument('--gpu', default='0', type=str, help='gpu device ids for CUDA_VISIBLE_DEVICES')
