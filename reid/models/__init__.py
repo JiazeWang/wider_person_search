@@ -9,6 +9,7 @@ from .hacnn import *
 from .pcb import *
 from .mlfn import *
 from .resnetmid import *
+from .mgn import *
 
 __factory = {
     'resnet50': ResNet50,
@@ -25,6 +26,7 @@ __factory = {
     'pcb_p6': pcb_p6,
     'pcb_p4': pcb_p4,
     'mlfn': mlfn,
+    'mgn': MGN
 }
 
 def get_names():

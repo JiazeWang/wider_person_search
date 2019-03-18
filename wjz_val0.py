@@ -152,30 +152,7 @@ def rank(movie_face, movie_reid):
     candi_candi_dist = pdist(candi_feats, 'euclidean')
     candi_candi_dist = squareform(candi_candi_dist)
     #print("cast_candi_fsim.shape[0],len(cast_ids),cast_candi_fsim.shape[1],len(candi_f_ids):",cast_candi_fsim.shape[0],len(cast_ids),cast_candi_fsim.shape[1],len(candi_f_ids))
-    assert cast_candi_fsim.shape[0] == len(cast_ids) and cast_candi_fsim.shape[1] == len(candi_f_ids)
-
-    # get cast_candi_flag
-    row_num, col_num = cast_candi_fsim.shape
-    cast_candi_filter = np.zeros((row_num, col_num))
-    for i, candi_id in enumerate(candi_f_ids):
-        sim = cast_candi_fsim.T[i].copy()
-        max_ind = np.argsort(sim)[-1]
-        if sim[max_ind] > 0.29:
-            cast_candi_filter[max_ind, i] = 1
-            movie_rank[cast_ids[max_ind]].append(candi_id)
-
-    cast_candi_filter, recall_num = multi_face_recall(cast_candi_filter, candi_f_ids, candi_candi_fsim)
-
-    # multi query search
-    tmp_dist = multi_search(cast_candi_filter, candi_f_ids, candi_ids, candi_candi_dist)
-
-    # add res
-    for i, cast_id in enumerate(cast_ids):
-        inds = np.argsort(tmp_dist[i])
-        for idx in inds:
-            if candi_ids[idx] not in movie_rank[cast_id]:
-                movie_rank[cast_id].append(candi_ids[idx])
-
+    
     return movie_rank, recall_num
 
 def rank2txt(rank, file_name):
@@ -258,9 +235,7 @@ def main(args):
     movie_num = len(movie_list)
     for i, movie in enumerate(movie_list):
         movie_face = face_dict[movie]
-        print("movie_face.shape:",movie.shape)
         movie_reid = reid_dict[movie]
-        print("movie_reid.shape", movie_reid.shape)
         movie_rank, recall_num = rank(movie_face, movie_reid)
         print('movie: %s, %d/%d, recall num: %d'%(movie, i+1, movie_num, recall_num))
         rank_list.update(movie_rank)
