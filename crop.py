@@ -33,7 +33,7 @@ if __name__ == '__main__':
             pid = candidate['id']
             c_label = candidate['label']
             save_name = '%s_%s.jpg'%(c_label, pid)
-            img_path = osp.join(trainval_root, 'val', candidate['img'])
+            img_path = osp.join(trainval_root, candidate['img'])
             img = cv2.imread(img_path)
             h, w, _ = img.shape
             bbox = candidate['bbox']
