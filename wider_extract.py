@@ -50,11 +50,6 @@ def main(args):
         batch_size=args.test_batch, shuffle=False, num_workers=args.workers,
         pin_memory=pin_memory, drop_last=False,
     )
-    testloader = DataLoader(
-        ImageDataset(dataset.test, transform=transform_test),
-        batch_size=args.test_batch, shuffle=False, num_workers=args.workers,
-        pin_memory=pin_memory, drop_last=False,
-    )
 
     print("Initializing model: {}".format(args.arch))
     #model = models.init_model(name=args.arch, num_classes=998)
