@@ -256,7 +256,7 @@ def main(args):
         reid_dict = load_reid(reid_pkl)
     elif args.arch == 'pcb_p6':
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_pcb_p6))
-        reid_dict = load_reid(reid_pkl
+        reid_dict = load_reid(reid_pkl)
     elif args.arch == 'mgn':
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_mgn))
         reid_dict = load_reid(reid_pkl)
