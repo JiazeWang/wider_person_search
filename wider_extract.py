@@ -129,7 +129,7 @@ if __name__ == '__main__':
                         choices=data_wider.get_names())
     parser.add_argument('-j', '--workers', default=4, type=int,
                         help="number of data loading workers (default: 4)")
-    parser.add_argument('--height', type=int, default=256,
+    parser.add_argument('--height', type=int, default=384,
                         help="height of an image (default: 256)")
     parser.add_argument('--width', type=int, default=128,
                         help="width of an image (default: 128)")
