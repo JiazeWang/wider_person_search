@@ -261,7 +261,7 @@ def main(args):
         reid_pkl = my_unpickle(osp.join('./features', reid_feat_name_mgn))
         reid_dict = load_reid(reid_pkl)
     print('Done !')
-
+    print(reid_dict)
     rank_list = {}
     movie_num = len(movie_list)
     for i, movie in enumerate(movie_list):
