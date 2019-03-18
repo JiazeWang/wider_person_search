@@ -62,7 +62,7 @@ def main(args):
     print("Model size: {:.5f}M".format(sum(p.numel() for p in model.parameters())/1000000.0))
 
     #resume = './reid/models/trained_models/%s_best_model.pth.tar'%args.arch
-    resume ='/research/pheng5/jzwang/19/code/MGN-pytorch/experiment/wider/model'
+    resume ='/research/pheng5/jzwang/19/code/MGN-pytorch/experiment/wider/model/159.pt'
     print("Loading checkpoint from '{}'".format(resume))
     #checkpoint = torch.load(resume)
     #model.load_state_dict(checkpoint['state_dict'])
