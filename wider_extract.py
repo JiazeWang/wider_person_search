@@ -58,11 +58,10 @@ def main(args):
 
     print("Initializing model: {}".format(args.arch))
     #model = models.init_model(name=args.arch, num_classes=998)
-    model = models.init_model(name=args.arch, num_classes=998, loss={'xent'})
+    model = models.init_model(name=args.arch)
     print("Model size: {:.5f}M".format(sum(p.numel() for p in model.parameters())/1000000.0))
 
-    #resume = './reid/models/trained_models/%s_best_model.pth.tar'%args.arch
-    resume ='/research/pheng5/jzwang/19/code/MGN-pytorch/experiment/wider/model'
+    resume = './reid/models/trained_models/%s_best_model.pth.tar'%args.arch
     print("Loading checkpoint from '{}'".format(resume))
     #checkpoint = torch.load(resume)
     #model.load_state_dict(checkpoint['state_dict'])
