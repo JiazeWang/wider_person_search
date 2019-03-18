@@ -95,8 +95,8 @@ class HarmAttn(nn.Module):
 class MGN(nn.Module):
     def __init__(self):
         super(MGN, self).__init__()
-        args.num_classes =739
-        args.feats = 256
+        num_classes =739
+        num_feats = 256
 
         resnet = resnet50(pretrained=True)
 
@@ -138,7 +138,7 @@ class MGN(nn.Module):
         self.maxpool_zp2 = pool2d(kernel_size=(12, 8))
         self.maxpool_zp3 = pool2d(kernel_size=(8, 8))
 
-        reduction = nn.Sequential(nn.Conv2d(2048, args.feats, 1, bias=False), nn.BatchNorm2d(args.feats), nn.ReLU())
+        reduction = nn.Sequential(nn.Conv2d(2048, num_feats, 1, bias=False), nn.BatchNorm2d(num_feats), nn.ReLU())
 
         self._init_reduction(reduction)
         self.reduction_0 = copy.deepcopy(reduction)
@@ -151,27 +151,27 @@ class MGN(nn.Module):
         self.reduction_7 = copy.deepcopy(reduction)
 
         #self.fc_id_2048_0 = nn.Linear(2048, num_classes)
-        self.fc_id_2048_0 = nn.Linear(args.feats, num_classes)
-        self.fc_id_2048_1 = nn.Linear(args.feats, num_classes)
-        self.fc_id_2048_2 = nn.Linear(args.feats, num_classes)
+        self.fc_id_2048_0 = nn.Linear(num_feats, num_classes)
+        self.fc_id_2048_1 = nn.Linear(num_feats, num_classes)
+        self.fc_id_2048_2 = nn.Linear(num_feats, num_classes)
 
-        self.fc_id_256_1_0 = nn.Linear(args.feats, num_classes)
-        self.fc_id_256_1_1 = nn.Linear(args.feats, num_classes)
-        self.fc_id_256_2_0 = nn.Linear(args.feats, num_classes)
-        self.fc_id_256_2_1 = nn.Linear(args.feats, num_classes)
-        self.fc_id_256_2_2 = nn.Linear(args.feats, num_classes)
-        self.fc_g = nn.Linear(args.feats * 8, num_classes)
+        self.fc_id_256_1_0 = nn.Linear(num_feats, num_classes)
+        self.fc_id_256_1_1 = nn.Linear(num_feats, num_classes)
+        self.fc_id_256_2_0 = nn.Linear(num_feats, num_classes)
+        self.fc_id_256_2_1 = nn.Linear(num_feats, num_classes)
+        self.fc_id_256_2_2 = nn.Linear(num_feats, num_classes)
+        self.fc_g = nn.Linear(num_feats * 8, num_classes)
 
 
-        self.fc_id_2048_0_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
-        self.fc_id_2048_1_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
-        self.fc_id_2048_2_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
+        self.fc_id_2048_0_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
+        self.fc_id_2048_1_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
+        self.fc_id_2048_2_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
 
-        self.fc_id_256_1_0_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
-        self.fc_id_256_1_1_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
-        self.fc_id_256_2_0_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
-        self.fc_id_256_2_1_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
-        self.fc_id_256_2_2_w = nn.Sequential(nn.Linear(args.feats, 1), nn.Sigmoid())
+        self.fc_id_256_1_0_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
+        self.fc_id_256_1_1_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
+        self.fc_id_256_2_0_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
+        self.fc_id_256_2_1_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
+        self.fc_id_256_2_2_w = nn.Sequential(nn.Linear(num_feats, 1), nn.Sigmoid())
 
 
 
