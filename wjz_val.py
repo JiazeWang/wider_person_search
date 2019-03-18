@@ -216,7 +216,7 @@ def main(args):
     print('Load features from pkl ...')
     #face_pkl = my_unpickle(osp.join('./features', face_feat_name))
     #face_dict, movie_list = load_face(face_pkl)
-    info_file = 'val.json'
+    info_file = 'val_new/val.json'
     info_dict = read_info(info_file)
     feat_file = 'features/face_val.json'
     feat_dict = read_feat(feat_file)
