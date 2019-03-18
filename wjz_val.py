@@ -216,9 +216,9 @@ def main(args):
     print('Load features from pkl ...')
     #face_pkl = my_unpickle(osp.join('./features', face_feat_name))
     #face_dict, movie_list = load_face(face_pkl)
-    info_file = '/mnt/SSD/jzwang/wider/label/val.json'
+    info_file = 'val.json'
     info_dict = read_info(info_file)
-    feat_file = '/home/jzwang/new/baseline/FaceTool/face_val.json'
+    feat_file = 'features/face_val.json'
     feat_dict = read_feat(feat_file)
     face_dict, movie_list = load_face(info_dict, feat_dict)
     if args.arch is None:
