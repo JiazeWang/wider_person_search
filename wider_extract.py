@@ -68,12 +68,13 @@ def main(args):
     #model.load_state_dict(checkpoint['state_dict'])
     #model = nn.DataParallel(model).cuda()
 
-    checkpoint = torch.load(resume)
-    pretrain_dict = checkpoint.state_dict()
-    model_dict = model.state_dict()
-    pretrain_dict = {k: v for k, v in pretrain_dict.items() if k in model_dict and model_dict[k].size() == v.size()}
-    model_dict.update(pretrain_dict)
-    model.load_state_dict(model_dict)
+    #checkpoint = torch.load(resume)
+    #pretrain_dict = checkpoint['state_dict']
+    #model_dict = model.state_dict()
+    #pretrain_dict = {k: v for k, v in pretrain_dict.items() if k in model_dict and model_dict[k].size() == v.size()}
+    #model_dict.update(pretrain_dict)
+    #model.load_state_dict(model_dict)
+    model = torch.load(resume)
     model = nn.DataParallel(model).cuda()
 
     model.eval()
