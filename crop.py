@@ -29,7 +29,7 @@ if __name__ == '__main__':
         candidates = info['candidates']
         candi_len = len(candidates)
         for i, candidate in enumerate(candidates):
-            print('val: %d/%d, test: %d/%d ... %s %d/%d'%(val_cnt, val_num, test_cnt, test_num, candidate['img'], i+1, candi_len))
+            print('val: %d/%d, %s %d/%d'%(val_cnt, val_num, candidate['img'], i+1, candi_len))
             pid = candidate['id']
             c_label = candidate['label']
             save_name = '%s_%s.jpg'%(c_label, pid)
