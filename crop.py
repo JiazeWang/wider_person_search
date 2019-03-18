@@ -3,9 +3,9 @@ import os
 import os.path as osp
 import cv2
 
-trainval_root = '/mnt/SSD/jzwang/wider/images'
-test_root = '/mnt/SSD/jzwang/wider/images'
-save_root = '/mnt/SSD/jzwang'
+trainval_root = '/research/pheng5/jzwang/19/code/wider_person_search/val_new/val'
+#test_root = '/mnt/SSD/jzwang/wider/images'
+save_root = 'crop_new'
 
 def load_json(name):
     with open(name) as f:
@@ -18,10 +18,10 @@ def check_path(path):
         print('path not exist, mkdir:', path)
 
 if __name__ == '__main__':
-    val = load_json(osp.join(trainval_root,'..','label','val.json'))
-    test = load_json(osp.join(test_root, '..','label','test.json'))
-
-    val_num, test_num = len(val.keys()), len(test.keys())
+    val = load_json(osp.join(trainval_root,'..','val.json'))
+    #test = load_json(osp.join(test_root, '..','label','test.json'))
+    val_num = len(val.keys())
+    #val_num, test_num = len(val.keys()), len(test.keys())
     val_cnt, test_cnt = 0, 0
     chk_val, chk_test = False, False
     for movie, info in val.items():
